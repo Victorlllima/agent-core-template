@@ -1,0 +1,39 @@
+{
+  "name": "@genixtech/agent-core",
+  "version": "0.1.0",
+  "description": "Guardrails reutilizáveis para agentes de atendimento/vendas via WhatsApp da GenixTech — extraídos da Sofia (GenixMed), do Bioete (Grupo MPF) e dos repos de referência do Talles.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./anti-loop": "./dist/anti-loop.js",
+    "./confirmacao-dupla": "./dist/confirmacao-dupla.js",
+    "./debounce": "./dist/debounce.js",
+    "./watchdog": "./dist/watchdog.js",
+    "./fim-de-conversa": "./dist/fim-de-conversa.js",
+    "./ia-control": "./dist/ia-control.js",
+    "./prompt-cache": "./dist/prompt-cache.js",
+    "./registro": "./dist/registro.js",
+    "./memory": "./dist/memory.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.69.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4",
+    "@types/node": "^22.10.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Victorlllima/agent-core-template.git"
+  },
+  "license": "UNLICENSED",
+  "private": false
+}
