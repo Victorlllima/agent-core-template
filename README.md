@@ -35,6 +35,8 @@ chamado, não. Esse pacote é a coleção dessas funções.
 | `prompt-cache` | Separa system prompt fixo (cacheável) de variável (data, nome) | Sofia |
 | `registro` | Extrai estado estruturado de linhas `[[REGISTRO: campo=valor]]` no texto do modelo | agente-sdr (Talles) |
 | `memory` | Interface de sessão com chave `(tenantId, conversaId)` — nunca só conversaId | Sofia |
+| `composio` | Integrações externas (Google, Trello, HubSpot...) via Composio, isoladas por `tenantId` — um `auth_config` por toolkit reaproveitado entre tenants, uma conexão por tenant | Amélia (GenixTech/Felice), validado em produção 15/10 |
+| `tenant-toolkits` | Quais toolkits cada tenant habilitou no onboarding — decide que `tools` oferecer ao modelo por tenant | Amélia + `agent-onboarding` |
 
 ## Uso
 
@@ -48,6 +50,32 @@ import { AntiLoop, ConfirmacaoDupla, deveFicarEmSilencio } from "@genixtech/agen
 
 Cada módulo também é importável isolado (`@genixtech/agent-core/anti-loop`) se você só quer um
 pedaço.
+
+### `composio` — integrações externas isoladas por tenant
+
+```ts
+import { ComposioClient, TenantToolkitsEmProcesso } from "@genixtech/agent-core";
+
+const composio = new ComposioClient(); // lê COMPOSIO_API_KEY do ambiente
+const habilitados = new TenantToolkitsEmProcesso();
+
+// onboarding: cliente marcou "Google Calendar" na tela do agent-onboarding
+await habilitados.habilitar(tenantId, "googlecalendar");
+const { redirectUrl } = await composio.gerarLinkConexao(tenantId, "googlecalendar");
+// -> manda redirectUrl pro cliente aprovar
+
+// depois, no loop do agente: só oferece ao modelo os toolkits que esse tenant habilitou
+const toolkitsDoTenant = await habilitados.listarHabilitados(tenantId);
+const resultado = await composio.executarFerramenta(tenantId, "GOOGLECALENDAR_EVENTS_LIST_ALL_CALENDARS", {
+  time_min: "...",
+  time_max: "...",
+});
+```
+
+Requer `COMPOSIO_API_KEY` no ambiente (gerada no dashboard da Composio, Settings → Project
+Settings). As implementações `*EmProcesso` (auth configs, toolkits habilitados) são só pra
+desenvolvimento — produção precisa de uma implementação persistente (Postgres), do mesmo jeito
+que `MemoriaEmProcesso`.
 
 ## Desenvolvimento
 

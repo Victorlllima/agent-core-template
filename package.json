@@ -15,7 +15,9 @@
     "./ia-control": "./dist/ia-control.js",
     "./prompt-cache": "./dist/prompt-cache.js",
     "./registro": "./dist/registro.js",
-    "./memory": "./dist/memory.js"
+    "./memory": "./dist/memory.js",
+    "./composio": "./dist/composio.js",
+    "./tenant-toolkits": "./dist/tenant-toolkits.js"
   },
   "scripts": {
     "prepare": "npm run build",

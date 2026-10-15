@@ -7,3 +7,5 @@ export * from "./ia-control.js";
 export * from "./prompt-cache.js";
 export * from "./registro.js";
 export * from "./memory.js";
+export * from "./composio.js";
+export * from "./tenant-toolkits.js";
