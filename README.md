@@ -37,6 +37,7 @@ chamado, não. Esse pacote é a coleção dessas funções.
 | `memory` | Interface de sessão com chave `(tenantId, conversaId)` — nunca só conversaId | Sofia |
 | `composio` | Integrações externas (Google, Trello, HubSpot...) via Composio, isoladas por `tenantId` — um `auth_config` por toolkit reaproveitado entre tenants, uma conexão por tenant | Amélia (GenixTech/Felice), validado em produção 15/10 |
 | `tenant-toolkits` | Quais toolkits cada tenant habilitou no onboarding — decide que `tools` oferecer ao modelo por tenant | Amélia + `agent-onboarding` |
+| `grupo-contexto` | Em grupo, o agente só responde quando é marcado, mas ao ser marcado lê tudo o que foi dito desde a última leitura dele (o diff, inclusive as próprias respostas) e responde no contexto da conversa | Elvis (grupo da família, 15/11/2026) |
 
 ## Uso
 

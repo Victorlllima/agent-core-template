@@ -9,3 +9,4 @@ export * from "./registro.js";
 export * from "./memory.js";
 export * from "./composio.js";
 export * from "./tenant-toolkits.js";
+export * from "./grupo-contexto.js";

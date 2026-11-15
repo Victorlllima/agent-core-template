@@ -17,7 +17,8 @@
     "./registro": "./dist/registro.js",
     "./memory": "./dist/memory.js",
     "./composio": "./dist/composio.js",
-    "./tenant-toolkits": "./dist/tenant-toolkits.js"
+    "./tenant-toolkits": "./dist/tenant-toolkits.js",
+    "./grupo-contexto": "./dist/grupo-contexto.js"
   },
   "scripts": {
     "prepare": "npm run build",
